@@ -1,12 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
     <title>blue turtle</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="container-fluid px-0 wrapper">
+        <!--blog title-->
+        <div class="container-fluid pt-5">
+            <div class="row no-gutters">
+                <!-- <div class="col-3"> -->
+                        <h1 class="h2 title mb-0">blue turtle</h1>
+                     <img src="icons/blue turtle.png" class="logo" alt="blue turtle logo">
+                 <!-- </div> -->
+                <!-- <div class="col-9"> -->
+
+                    
+                <!-- </div> -->
+            </div>
+        </div>
+        <!--about-->
+        <div class="container-fluid pt-2">
+            <div class="row no-gutters">
+                <!-- <div class="col-3"> -->
+<!--                     <img src="img/mypic.jpg" class="rounded-circle author-pic" alt="author pic">
+ -->                <!-- </div> -->
+                <!-- <div class="col-9"> -->
+                    <p class="h6 subtitle">A web development blog by <a href="https://twitter.com/islam_sayed8">Islam Sayed</a> </p>
+                <!-- </div> -->
+            </div>
+        </div>
+        <!--articles-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 article-wrapper mt-5 py-2">
+                    <h2 class="h4 article-title">How to Trap Focus inside a Modal.</h2>
+                    <time datetime="2018-8-10" class="small">August 10, 2018</time>
+                    <img src="icons/blue turtle.png" class="time-indicator" alt="">
+                    <img src="icons/blue turtle.png" class="time-indicator" alt="">
+                    <span class="small">8 min read</span>
+                    <span class="small ml-3 tag">#A11y #JS</span>
+                    <p class="article-brief mb-0">An accessibility issue being solved.</p>
+                </div>
+                <div class=" col-12 article-wrapper mt-5 py-2">
+                    <h2 class="h4 article-title">JavaScript Conditionals.</h2>
+                    <time datetime="" class="small one-line">February 12, 2019</time>
+                    <img src="icons/blue turtle.png" class="time-indicator" alt="">
+                    <span class="small">4 min read</span>
+                    <span class="small ml-3 tag">#JS</span>
+                    <p class="article-brief mb-0">This is how computers take decisions.</p>
+                </div>
+                <div class=" col-12 article-wrapper mt-5 py-2">
+                    <h2 class="h4 article-title">JavaScript Conditionals.</h2>
+                    <time datetime="" class="small">February 12, 2019</time>
+                    <img src="icons/blue turtle.png" class="time-indicator" alt="">
+                    <span class="small">4 min read</span>
+                    <span class="small ml-3 tag">#JS</span>
+                    <p class="article-brief mb-0">This is how computers take decisions.</p>
+                </div>
+            </div>
+            <!--footer-->
+            <footer class="mt-5">
+                <div class="container-fluid">
+                    <div class="row">
+                        <a href="#/">
+                            <svg class="mr-2" height="40px" version="1.1" viewBox="0 0 60 60" width="40px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="black" stroke="none" stroke-width="1"><g id="twitter"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z" fill="#000000" id="Twitter"/><path d="M41.0521385,18.4366943 C39.8431846,17.0622015 38.1205385,16.1864641 36.2140615,16.154731 C32.5536,16.0938031 29.5856538,19.1869234 29.5856538,23.063116 C29.5856538,23.6132412 29.6442923,24.1496934 29.7573692,24.6646732 C24.2485846,24.3073526 19.3644692,21.4387706 16.0954154,17.1147218 C15.5248615,18.1508617 15.1979077,19.3618827 15.1979077,20.6591504 C15.1979077,23.1149884 16.3680923,25.2945272 18.1466308,26.5814174 C17.0601231,26.5334499 16.0380692,26.2045378 15.1444385,25.664952 C15.1437923,25.694445 15.1437923,25.7239449 15.1437923,25.7539625 C15.1437923,29.1835497 17.4285923,32.0607076 20.4608308,32.7309383 C19.9046538,32.888538 19.3190769,32.9710163 18.7146,32.967008 C18.2874923,32.9641758 17.8721769,32.9168118 17.4675231,32.831768 C18.3109154,35.6443777 20.7587077,37.6967663 23.6592923,37.764628 C21.3908077,39.6476963 18.5328692,40.7691933 15.4272923,40.762787 C14.8922769,40.7616833 14.3646923,40.727112 13.8461538,40.6605996 C16.7795308,42.6733139 20.2635923,43.8451711 24.0067615,43.8461531 C36.1985538,43.8493518 42.8657308,33.2395109 42.8657308,24.0367687 C42.8657308,23.7348363 42.8591077,23.4345191 42.8465077,23.135652 C44.1415615,22.1706665 45.2652231,20.9607892 46.1538462,19.579219 C44.9652462,20.1150162 43.6876385,20.4708686 42.3470308,20.6201379 C43.7154231,19.7779652 44.7665538,18.4300961 45.2613462,16.8137584 C43.9805077,17.5904923 42.5620385,18.1475129 41.0521385,18.4366943 Z" fill="#1392d3"/></g></g></svg>
+                        </a>
+                        <a href="#/">
+                            <svg class="mr-2" height="40px" version="1.1" viewBox="0 0 60 60" width="40px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="black" stroke="none" stroke-width="1"><g id="facebook"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z" fill="#000000" id="Facebook"/><path d="M25.4622239,47.314313 L25.4622239,29.9989613 L21.9432889,29.9989612 L21.9432889,24.2593563 L25.4622239,24.2593563 L25.4622239,20.7883864 C25.4622239,16.1066422 26.8619948,12.730619 31.9881023,12.730619 L38.0863595,12.730619 L38.0863595,18.45844 L33.7922546,18.45844 C31.6418944,18.45844 31.1518737,19.8873763 31.1518737,21.3837609 L31.1518737,24.2593553 L37.7694231,24.2593558 L36.8661728,29.9989613 L31.1518737,29.9989613 L31.1518737,47.3143123 L25.4622239,47.314313 Z" fill="#1392d3"/></g></g></svg>
+                        </a>
+                        <a href="#/">
+                            <svg class="mr-2" height="40px" version="1.1" viewBox="0 0 60 60" width="40px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><defs/><g fill="none" fill-rule="evenodd" id="black" stroke="none" stroke-width="1"><g id="pinterest"><path d="M30,60 C46.5685433,60 60,46.5685433 60,30 C60,13.4314567 46.5685433,0 30,0 C13.4314567,0 0,13.4314567 0,30 C0,46.5685433 13.4314567,60 30,60 Z" fill="#000000" id="Pinterest"/><path d="M32.7594534,39.0844011 C39.3650607,39.0844011 43.8461538,32.9370493 43.8461538,24.7083106 C43.8461538,18.4879013 38.683296,12.6923077 30.8387325,12.6923077 C21.076393,12.6923077 16.1538462,19.8375106 16.1538462,25.7957548 C16.1538462,29.4035321 17.4908705,32.6132513 20.3616445,33.8095301 C20.831959,34.0055526 21.2533867,33.8158437 21.3903287,33.2845985 C21.4839793,32.9163046 21.7104488,31.9873019 21.8088114,31.6009691 C21.9466368,31.0748349 21.893627,30.8905376 21.5137236,30.4317486 C20.6867711,29.4341982 20.1590293,28.1453197 20.1590293,26.3176799 C20.1590293,21.0172538 24.0419955,16.2721247 30.2747673,16.2721247 C35.7910237,16.2721247 38.8240664,19.7130423 38.8240664,24.3105531 C38.8240664,30.3583905 36.2024384,35.462794 32.3094593,35.462794 C30.1590293,35.462794 28.5513606,33.648082 29.0661444,31.4226848 C29.6825303,28.7655568 30.8805513,25.8967726 30.8805513,23.9786376 C30.8805513,22.2625382 29.9779126,20.8293487 28.1090234,20.8293487 C25.9111792,20.8293487 24.1462481,23.1509534 24.1462481,26.2593542 C24.1462481,28.239122 24.8026858,29.5785093 24.8026858,29.5785093 C24.8026858,29.5785093 22.5535988,39.3053775 22.1586759,41.0082484 C21.8005654,42.5589913 21.7469667,44.2633654 21.797326,45.7037705 C21.9478148,46.9959561 23.1994346,48.0482244 24.2852515,46.6306686 C25.0485923,45.3850835 25.8693603,43.8120926 26.2940276,42.2354939 C26.5472965,41.3025828 27.7400165,36.4699652 27.7400165,36.4699652 C28.454765,37.860162 30.5412887,39.0844011 32.7594534,39.0844011 Z" fill="#1392d3" id="Pinterest"/></g></g></svg>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
