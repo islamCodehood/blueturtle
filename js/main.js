@@ -5,6 +5,7 @@ window.onload = function() {
     const switchArea = document.getElementsByClassName('switch-area')
     const wrapper = document.querySelector('.wrapper')
     const articlesWrappers = document.getElementsByClassName('article-wrapper')
+    const hrElems = document.getElementsByTagName('hr')
     const setMood = function(mood) {
             if (mood === "day_mood") {
                 sun.classList.add('hidden')
@@ -14,6 +15,9 @@ window.onload = function() {
                 Array.prototype.forEach.call(articlesWrappers, function(articleWrapper) {
                     articleWrapper.classList.add('light-theme-article-wrapper')
                 })
+                Array.prototype.forEach.call(hrElems, function(hrElem) {
+                    hrElem.classList.add('light-theme-hr')
+                })
                 if (typeof(Storage) !== "undefined") {
                     localStorage.setItem("mood", "day_mood")
                 }
@@ -22,6 +26,9 @@ window.onload = function() {
                 moon.classList.add('hidden')
                 document.body.classList.remove('light-theme-body')
                 wrapper.classList.remove('light-theme-wrapper')
+                Array.prototype.forEach.call(hrElems, function(hrElem) {
+                    hrElem.classList.remove('light-theme-hr')
+                })
                 Array.prototype.forEach.call(articlesWrappers, function(articleWrapper) {
                     articleWrapper.classList.remove('light-theme-article-wrapper')
                 })
