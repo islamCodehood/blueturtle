@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/an-old-hope.min.css" />
+    <link rel="stylesheet" href="../css/article.css" />
+    <!-- <style>
+             pre {
+                width: 50%;
+                height: 300px;
+                margin: auto;
+                padding: 15px;
+                border-radius: 5px;
+                overflow-x: auto;
+                overflow-y: auto;
+            }
+            body {
+                background: #221
+            } 
+        </style> -->
+    <title>How to Trap Focus inside a Modal.</title>
+</head>
+
+<body>
+    <div class="container-fluid wrapper px-0">
+        <div class="container-fluid pt-5">
+            <div class="row no-gutters">
+                <h1 class="article-title">
+            How To Trap Focus Inside a Modal.
+          </h1>
+                <p>August 10, 2018 :: #A11y #JS</p>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <div class="row no-gutters ">
+                <div class="col-12 py-2">
+                    <p>
+                        Trapping focus is one of the important issues concerning accessibility. In case of assistive technology (like screen readers) users, or keyboard users, trapping focus is a must.
+                    </p>
+                    <p>
+                        We are going to talk about How to Trap Focus inside of a modal as long as it is open and transfer focus to the rest of page once it is closed.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <div class="container-fluid py-2">
+
+            <div class="row no-gutters ">
+                <div class="col-12">
+    
+                    <p>Let’s see what we have here.</p>
+                    <p>
+                        <em>Hint: If you only want the code snippet, just go to "Trap Focus
+                          Method" section.</em
+                        >
+                      </p>
+                </div>
+            </div>
+        </div>
+            <div class="container-fluid py-2">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                            <p><strong>Contents:</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+
+                <ol>
+                  <li>Terminology.</li>
+                  <li>tabindex Attribute.</li>
+                  <li>Element.focus()</li>
+                  <li>Trap Focus method</li>
+                  <li>Resources.</li>
+                </ol>
+            </div>
+
+          <hr />
+          <div class="container-fluid py-2">
+              <div class="row no-gutters">
+                  <div class="col-12">
+                        <h2><strong>Terminology:</strong></h2>
+                  </div>
+              </div>
+          </div>
+            <div class="col-12">
+                    <p>
+                            According to
+                            <a href="https://allyjs.io/what-is-focusable.html">Ally.js</a>
+                            library an HTML element can be a member of exactly one of the
+                            following five categories:
+                          </p>
+                          <ol>
+                              <li>
+                                    <strong>Inert:</strong> The element is not interactive and thus
+                                    not focusable. And should not be focused by script (except in rare
+                                    cases).
+                                  </li>
+                              <li>
+                                    <strong>Focusable:</strong> The element can be focused by script
+                                    <code>Element.focus()</code> and possibly the mouse (or pointer),
+                                    but not the keyboard.
+                                  </li>
+                              <li>
+                                    <strong>Tabbable:</strong> The element is keyboard focusable
+                                    (“tabbable”), as it is part of the document’s sequential focus
+                                    navigation order. The element is also focusable by script and
+                                    possibly the mouse (or pointer). It is important to note that this
+                                    navigation order is the same as DOM order.
+                                  </li>
+                              <li>
+                                    <strong>Only Tabbable:</strong> The element is only keyboard
+                                    focusable, possibly by the mouse (or pointer), but it cannot be
+                                    focused by script.
+                                  </li>
+                              <li>
+                                    <strong>Forward Focus:</strong> The element will forward focus to
+                                    another element instead of receiving focus itself.
+                                  </li>
+                          </ol>
+                              
+            </div>
+          <div class="col-12">
+                <p>
+                        Here is a
+                        <a href="https://allyjs.io/data-tables/focusable.html">table</a> of
+                        Browser Compatibility of Focusable and Tabbable Elements. It shows
+                        which elements are tabbable, focusable, or inert and its
+                        compatibility with different browsers.
+                      </p>
+          </div>
+         
+          <hr />
+          
+                <div class="container-fluid py-2">
+                        <div class="row no-gutters">
+                            <div class="col-12">
+                                    <h2>
+                                <strong>tabindex Attribute:</strong>
+                              </h2>
+                            </div>
+                        </div>
+                    </div>
+          <div class="col-12">
+                                
+              <p>
+                The attribute tabindex is a global HTML attribute. It decides which
+                element could be focused and puts it in the sequential focus
+                navigation order (or simply tab order).
+              </p>
+            </div>
+            <div class="col-12">
+
+                <p>Its value can be one of three:</p>
+            
+          <ol>
+              <li>
+                    <strong>Negative value:</strong>
+                    <code>tabindex="-1"</code> removes the element from tab order but it
+                    can be focusable by script.
+              </li>
+              <li>
+                    <strong>Zero value:</strong> <code>tabindex="0"</code> put the
+                    element in the tab order and its order is affected by to DOM
+                    structure. Note that the visual (CSS) structure does not affect tab
+                    order. Therefore, it is a good practice to have a similar viasual
+                    and DOM order not to confuse keyboard users.
+              </li>
+              <li>
+
+                  <strong>Positive value:</strong> <code>tabindex="1"</code> meaning
+                  that the element should be focusable in sequential keyboard
+                  navigation, with its order defined by the value of the number in an
+                  ascending manner. So <code>tabindex="2"</code> will precede
+                  <code>tabindex="3"</code> . This is Anti-Pattern and should be
+                  avoided because you will end up jumping between elements and this
+                  would cause confusion.
+              </li>
+            
+            
+            </ol>
+        </div>
+          <hr />
+          <div class="container-fluid py-2">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        <h2><strong>Element.focus():</strong></h2>
+                    </div>
+                    <div class="col-12">
+                            <p>
+                                    It sets focus on a specified element. This does not mean that it
+                                    outs the element in the tab order, but it drags focus to it in a
+                                    certain event using script. It can be used to a focusale or not
+                                    unfocusable element.
+                                  </p>
+                    </div>
+                </div>
+            </div>
+          
+          <div class="col-12">
+                <p><em>Syntax:</em></p>
+                <p><code>Element.focus([option])</code></p>
+                <p>The optional focus option is a <strong>boolean</strong> value.</p>
+                <p>
+                    If <code>false</code> method will scroll the element into the visible area of the browser window.
+                </p>
+                <p>
+                    If <code>true</code> (default) method will not scroll the element into the visible area of the browser window.
+                </p>
+          </div>
+          
+        <hr />
+        <div class="container-fluid py-2">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                            <h2><strong>Trap Focus Method:</strong></h2>
+                    </div>
+                    <div class="col-12">
+                            <p>
+                                    Here comes the exciting part. In this article we will tackle trapping focus inside a modal using JavaScript Of course, it is not the only method.
+                                </p>
+                                <p><em>This a simple page example contains:</em></p>
+                                <ul>
+                                    <li>
+                                            <strong><em>Sign in button</em></strong>. 
+                                            It is not a button in fact. It is just a div acts like a button.
+                                            That’s why I added <code>tabindex="0"</code> attribute to it.
+                                    </li>
+                                    <li>
+                                            <strong><em>Form</em></strong> consists of a Text box and a button.
+                                    </li>
+                                    <li>
+                                            <strong><em>Modal</em></strong> that pops up when you click Sign in button or press enter while it is focused. It contains:
+
+                                    </li>
+                                    <li>
+                                            <strong><em>Two Text boxes</em></strong
+                                                >. One for user name and the second for password entry. And finally
+                                                a Log in button.
+                                    </li>
+                                </ul>
+                    </div>
+                </div>
+            </div>
+        
+        
+            
+            
+            <div class="col-12">
+
+                <p>
+                  The required behavior is that when the modal is open focus is
+                  trapped inside it and does not reach other elements until modal is
+                  closed.
+                </p>
+            </div>
+            <div class="container-fluid py-2">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                            <h3>HTML</h3>
+                            <pre><code class="xml hljs"><span class="hljs-comment">&lt;!-- This div to make the overlay effect --&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"overlay"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"top"</span>&gt;</span>
+                                      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">"0"</span>&gt;</span>Sign in<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">""</span>&gt;</span>
+                                      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Search"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"backgroundElement"</span> /&gt;</span>
+                                      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"searchTextBox backgroundElement"</span> /&gt;</span>
+                                    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"modal"</span>&gt;</span>
+                                      <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">""</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"modal-form"</span>&gt;</span>
+                                        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">""</span>&gt;</span>
+                                          Username
+                                          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"usernameBox"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span> /&gt;</span>
+                                        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                                        <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+                                        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">""</span>&gt;</span>
+                                          Password
+                                          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span> /&gt;</span>
+                                        <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                                        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Log on"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"logOn"</span> /&gt;</span>
+                                      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                                    </code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                    <h3>JavaScript</h3>
+                    <pre><code class="javascript hljs"><span class="hljs-keyword">const</span> allBackgroundElements = <span class="hljs-built_in">document</span>.querySelectorAll(
+                              <span class="hljs-string">'.backgroundElement, [tabindex="0"]'</span>
+                            );
+                            <span class="hljs-keyword">const</span> signInBtn = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".btn"</span>);
+                            <span class="hljs-keyword">const</span> logOnBtn = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".logOn"</span>);
+                            <span class="hljs-keyword">const</span> modal = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".modal"</span>);
+                            <span class="hljs-keyword">const</span> usernameTextBox = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"usernameBox"</span>);
+                            <span class="hljs-keyword">const</span> searchTextBox = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">".searchTextBox"</span>);
+                            <span class="hljs-keyword">const</span> passwordTextBox = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"password"</span>);
+                            <span class="hljs-keyword">const</span> overlay = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"overlay"</span>);
+          
+                            <span class="hljs-comment">//listen for keydown. Check for target of the event.</span>
+                            <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"keydown"</span>, e =&gt; {
+                              <span class="hljs-comment">//if target is sign in button, check the key pressed.</span>
+                              <span class="hljs-keyword">if</span> (e.target === signInBtn) {
+                                <span class="hljs-comment">//if key is "Enter":</span>
+                                <span class="hljs-comment">//Show modal.</span>
+                                <span class="hljs-comment">//Remove elements outside modal from tab order.</span>
+                                <span class="hljs-comment">//Focus on user name text box.</span>
+                                <span class="hljs-comment">//display overlay.</span>
+                                <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
+                                  modal.classList.add(<span class="hljs-string">"modal-visible"</span>);
+                                  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> element <span class="hljs-keyword">of</span> allBackgroundElements) {
+                                    element.setAttribute(<span class="hljs-string">"tabindex"</span>, <span class="hljs-string">"-1"</span>);
+                                  }
+                                  usernameTextBox.focus();
+                                  overlay.style.display = <span class="hljs-string">"block"</span>;
+                                }
+                              } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.target === logOnBtn) {
+                                <span class="hljs-comment">//if target is log on button, check for key(s) pressed.</span>
+                                <span class="hljs-comment">//if keys are "shift" and "tab":</span>
+                                <span class="hljs-comment">//Focus on password text box.</span>
+                                <span class="hljs-keyword">if</span> (e.shiftKey &amp;&amp; e.keyCode === <span class="hljs-number">9</span>) {
+                                  e.preventDefault();
+                                  passwordTextBox.focus();
+                                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
+                                  <span class="hljs-comment">//if key is "Enter":</span>
+                                  <span class="hljs-comment">//hide modal.</span>
+                                  <span class="hljs-comment">//Add elements outside modal to tab order.</span>
+                                  <span class="hljs-comment">//Focus on search text box.</span>
+                                  <span class="hljs-comment">//hide overlay.</span>
+                                  e.preventDefault();
+                                  modal.classList.remove(<span class="hljs-string">"modal-visible"</span>);
+                                  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> element <span class="hljs-keyword">of</span> allBackgroundElements) {
+                                    element.setAttribute(<span class="hljs-string">"tabindex"</span>, <span class="hljs-string">"0"</span>);
+                                  }
+                                  searchTextBox.focus();
+                                  overlay.style.display = <span class="hljs-string">"none"</span>;
+                                  <span class="hljs-comment">//if key is "Tab":</span>
+                                  <span class="hljs-comment">//Focus on user name text box.</span>
+                                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">9</span>) {
+                                  e.preventDefault();
+                                  usernameTextBox.focus();
+                                }
+                              } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.target === usernameTextBox) {
+                                <span class="hljs-comment">//If target is user name text box, check for keys pressed.</span>
+                                <span class="hljs-comment">//if keys are "shift" and "tab":</span>
+                                <span class="hljs-comment">//Focus on log on button.</span>
+                                <span class="hljs-keyword">if</span> (e.shiftKey &amp;&amp; e.keyCode === <span class="hljs-number">9</span>) {
+                                  e.preventDefault();
+                                  logOnBtn.focus();
+                                }
+                              }
+                            });
+          
+                            <span class="hljs-comment">//listen for Click. Check for target of the event.</span>
+                            <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"click"</span>, e =&gt; {
+                              <span class="hljs-comment">//If target is sign in button:</span>
+                              <span class="hljs-comment">//Show modal.</span>
+                              <span class="hljs-comment">//Remove elements outside modal from tab order.</span>
+                              <span class="hljs-comment">//Focus on user name text box.</span>
+                              <span class="hljs-comment">//display overlay.</span>
+                              <span class="hljs-keyword">if</span> (e.target === signInBtn) {
+                                modal.classList.add(<span class="hljs-string">"modal-visible"</span>);
+                                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> element <span class="hljs-keyword">of</span> allBackgroundElements) {
+                                  element.setAttribute(<span class="hljs-string">"tabindex"</span>, <span class="hljs-string">"-1"</span>);
+                                }
+                                usernameTextBox.focus();
+                                overlay.style.display = <span class="hljs-string">"block"</span>;
+                              } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.target === logOnBtn) {
+                                <span class="hljs-comment">//if target is log on button:</span>
+                                <span class="hljs-comment">//hide modal.</span>
+                                <span class="hljs-comment">//Add elements outside modal to tab order.</span>
+                                <span class="hljs-comment">//Focus on search text box.</span>
+                                <span class="hljs-comment">//hide overlay.</span>
+                                modal.classList.remove(<span class="hljs-string">"modal-visible"</span>);
+                                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> element <span class="hljs-keyword">of</span> allBackgroundElements) {
+                                  element.setAttribute(<span class="hljs-string">"tabindex"</span>, <span class="hljs-string">"0"</span>);
+                                }
+                                searchTextBox.focus();
+                                overlay.style.display = <span class="hljs-string">"none"</span>;
+                              }
+                            });
+                            </code></pre>
+            </div>
+          
+          <p><em>What did I do?</em></p>
+          <ol>
+            <li>
+              <p>
+                When the Sign in button is clicked or pressed "Enter" upon, I
+                opened modal, remove elements outside modal from tab order, and
+                start focusing on the first focusable element of modal.
+              </p>
+            </li>
+            <li>
+              <p>
+                Inside modal I took care of the first and last focusable
+                elements, to ensure that when user reaches the last element for
+                example the first element will be the target of the next tab,
+                and when user presses "shift+tab" while on first element, it
+                will bring focus to the last element. So Focus is trapped inside
+                the modal as long as it is open.
+              </p>
+            </li>
+            <li>
+              <p>
+                When user click or press "Enter" while on Log on button, the
+                modal disappears, and all other elements return focusable again.
+              </p>
+            </li>
+          </ol>
+          <hr />
+          <div class="container-fluid py-2">
+                <div class="row no-gutters">
+                    <div class="col-12">
+                        
+                    </div>
+                </div>
+            </div>
+          <h2><strong>Resources:</strong></h2>
+            <p>
+                <a href="https://gomakethings.com/how-to-get-the-first-and-last-focusable-elements-in-the-dom/">How to get the first and last focusable element in the DOM.</a
+            >
+          </p>
+          <p>
+            <a href="https://allyjs.io/data-tables/focusable.html"
+              >Focusable Elements — Browser compatibility table.</a
+            >
+          </p>
+          <p>
+            <a href="https://allyjs.io/what-is-focusable.html"
+              >What does Focusable mean?</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus"
+              >HTMLElement.focus()</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute"
+              >Element.removeAttribute()</a
+            >
+          </p>
+          <p>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList"
+              >NodeList.</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://medium.com/@melwinalm/crcreating-keyboard-shortcuts-in-javascripteating-keyboard-shortcuts-in-javascript-763ca19beb9e"
+              >Creating keyboard shortcuts using JavaScript.</a
+            >
+          </p>
+          <p>
+            <a
+              href="https://stackoverflow.com/questions/2694640/find-an-element-in-dom-based-on-an-attribute-value#16775485"
+              >Find Element based on Attribute Value.</a
+            >
+          </p>
+        </div>
+  </body>
+</html>
