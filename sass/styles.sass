@@ -1,21 +1,60 @@
 body
-    background: #222111
-    color: #fff
+    background: #221
+    color: #d1d1d1
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box
     
-
 .wrapper
     max-width: 700px
     background: #222
-
 .article-wrapper
     background: #222
+    border-left: 3px solid #de851b
 
+.article-title 
+    a
+        font-weight: 600
+        letter-spacing: .5  px
+        text-decoration: none
+        position: relative
+        color: #d1d1d1
+        transition: all .3s ease
+        &:hover
+            border-bottom: 4px solid #d1d1d1
+
+.light-theme-body
+    background: #e5e5e5
+
+.light-theme-wrapper,
+.light-theme-article-wrapper,
+.light-theme-article-title,
+
+    color: #222
+    background: #ffffff
+    a
+        color: #222
+        &:hover
+            border-bottom: 4px solid #222
+
+.light-theme-article-wrapper
+    border-left: 3px solid #222
+
+        
 .logo
     width: 100%
     height: 100%
     max-width: 60px
     max-height: 33px
+    margin-top: -17px
+
+.moon,
+.sun
+    &:hover
+        cursor: pointer
+
+
+.hidden
+    display: none
 
 .author-pic
     width: 100%
@@ -37,29 +76,18 @@ body
     font-weight: 600
     letter-spacing: 1px
     color: #1392d3
-    //line-height: 1.5
 
 .subtitle
     font-size: 16px
     a
-        color: #1392d3
+        color: #d1d1d1
         font-style: italic
-        //font-family: 'Raleway', sans-serif
+        font-weight: 700
         text-decoration: none
         position: relative
-        transition: all .2s ease
-        &:after 
-            content: ""
-            position: absolute
-            bottom: -2px
-            left: 0
-            width: 0
-            transition: all .2s ease
+        transition: all .3s ease
         &:hover
-            color: #fff
-            &:after
-                width: 100%
-                border: 1px solid #1392d3
+            border-bottom: 4px solid #d1d1d1
 
 .time-indicator
     max-width: 25px
@@ -69,6 +97,9 @@ body
     line-height: 1
 
 .tag
-    color: #1392d3
+    color: #f7941e
     font-weight: 600 !important
     font-style: italic
+ 
+svg:hover path:nth-of-type(2)
+    fill:  #f7941e
