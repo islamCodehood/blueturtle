@@ -1,15 +1,14 @@
 var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+//var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 //var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer')
 const browserSync = require('browser-sync').create();
 
-gulp.task('scripts', function() {
+/* gulp.task('scripts', function() {
     return gulp.src('js/*.js')
-    .pipe(uglify())
     .pipe(gulp.dest('js/min.js'));
-});
+}); */
 
 gulp.task('styles', function() {
     return gulp.src('sass/**/*.sass')
@@ -40,7 +39,7 @@ gulp.task('stylesCompressed', function() {
 }); */ 
 
 gulp.task('watch', function() {
-    gulp.watch('js/*.js', gulp.series(['scripts']));
+    //gulp.watch('js/*.js', gulp.series(['scripts']));
     gulp.watch('sass/**/*.sass', gulp.series(['styles']));
     browserSync.init({
 		server: './'
@@ -49,4 +48,4 @@ gulp.task('watch', function() {
     gulp.watch('*.html').on('change', browserSync.reload)
     gulp.watch('js/**/*.js').on('change', browserSync.reload)
 });
-gulp.task('default', gulp.series(['scripts', 'styles', 'stylesCompressed', 'watch']));
+gulp.task('default', gulp.series([/* 'scripts', */ 'styles', 'stylesCompressed', 'watch']));
