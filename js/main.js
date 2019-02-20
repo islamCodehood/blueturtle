@@ -6,7 +6,6 @@ window.onload = function() {
     const articlesWrappers = document.getElementsByClassName('article-wrapper')
     Array.prototype.forEach.call(switchArea, function(area) {
         area.addEventListener('click', function(e) {
-            console.log(e.target)
             if (e.target.parentElement.parentElement === sun ||e.target === sun) {
                 sun.classList.toggle('hidden')
                 moon.classList.toggle('hidden')
