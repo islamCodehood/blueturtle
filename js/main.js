@@ -8,7 +8,6 @@ window.onload = function() {
         area.addEventListener('click', function(e) {
             console.log(e.target)
             if (e.target.parentElement.parentElement === sun ||e.target === sun) {
-                console.log()
                 sun.classList.toggle('hidden')
                 moon.classList.toggle('hidden')
                 document.body.classList.add('light-theme-body')
