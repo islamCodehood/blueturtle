@@ -18,16 +18,22 @@ body
         text-decoration: none
         position: relative
         color: #d1d1d1
-        transition: all .3s ease
+        transition: border-bottom .3s ease
         &:hover
             border-bottom: 4px solid #d1d1d1
+body,
+.wrapper,
+.article-wrapper,
+.article-title
+    transition: background .5s ease, color .5s ease, border-bottom .5s ease, border-left .5s ease
+
 
 .light-theme-body
     background: #e5e5e5
 
 .light-theme-wrapper,
 .light-theme-article-wrapper,
-.light-theme-article-title,
+.light-theme-article-title
 
     color: #222
     background: #ffffff
@@ -52,7 +58,6 @@ body
     &:hover
         cursor: pointer
 
-
 .hidden
     display: none
 
@@ -62,13 +67,6 @@ body
     max-width: 50px
     max-height: 50px
 
-.green
-    background: green
-    min-height: 100px
-
-.yellow
-    background: yellow
-    min-height: 100px
 
 .title
     font-family: 'Raleway', sans-serif;
@@ -85,7 +83,7 @@ body
         font-weight: 700
         text-decoration: none
         position: relative
-        transition: all .3s ease
+        transition: border-bottom .3s ease
         &:hover
             border-bottom: 4px solid #d1d1d1
 
