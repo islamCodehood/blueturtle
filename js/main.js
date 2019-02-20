@@ -1,27 +1,45 @@
 window.onload = function() {
+    console.log(localStorage.getItem("mood"))
     const moon = document.querySelector('.moon')
     const sun = document.querySelector('.sun')
     const switchArea = document.getElementsByClassName('switch-area')
     const wrapper = document.querySelector('.wrapper')
     const articlesWrappers = document.getElementsByClassName('article-wrapper')
-    Array.prototype.forEach.call(switchArea, function(area) {
-        area.addEventListener('click', function(e) {
-            if (e.target.parentElement.parentElement === sun ||e.target === sun) {
-                sun.classList.toggle('hidden')
-                moon.classList.toggle('hidden')
+    const setMood = function(mood) {
+            if (mood === "day_mood") {
+                sun.classList.add('hidden')
+                moon.classList.remove('hidden')
                 document.body.classList.add('light-theme-body')
                 wrapper.classList.add('light-theme-wrapper')
                 Array.prototype.forEach.call(articlesWrappers, function(articleWrapper) {
                     articleWrapper.classList.add('light-theme-article-wrapper')
                 })
-            } else if (e.target.parentElement.parentElement === moon || e.target === moon) {
-                sun.classList.toggle('hidden')
-                moon.classList.toggle('hidden')
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem("mood", "day_mood")
+                }
+            } else {
+                sun.classList.remove('hidden')
+                moon.classList.add('hidden')
                 document.body.classList.remove('light-theme-body')
                 wrapper.classList.remove('light-theme-wrapper')
                 Array.prototype.forEach.call(articlesWrappers, function(articleWrapper) {
                     articleWrapper.classList.remove('light-theme-article-wrapper')
                 })
+                if (typeof(Storage) !== "undefined") {
+                    
+                    localStorage.setItem("mood", "night_mood")
+                }
+            }
+                
+    }
+    Array.prototype.forEach.call(switchArea, function(area) {
+        area.addEventListener('click', function(e) {
+            if (e.target.parentElement.parentElement === sun ||e.target === sun) {
+                setMood("day_mood")
+                
+            } else if (e.target.parentElement.parentElement === moon || e.target === moon) {
+                setMood("night_mood")
+                
             }
         })
     })
